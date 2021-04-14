@@ -11,9 +11,16 @@ else
   echo "TODO // add function"
 fi
 
-i=0;
+i=1;
 while [ "$i" -lt 6 ]; do
   file_var=$(echo "${WIDGET_CONTROL}" | cut -d',' -f"$i")
-  source ./$file_var.sh
+  if [[ -z "$file_var" ]]
+    then
+      echo "";
+      tput cuu1
+      tput el
+    else
+      source ./$file_var.sh
+  fi
   i=$((i + 1));
 done
