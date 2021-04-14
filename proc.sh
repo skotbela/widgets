@@ -1,5 +1,6 @@
 #!/bin/bash
 
-echo "Number of running processes: "
-ps axu | wc -l
+process_number=$(ps axu | wc -l)
+echo "Number of running processes: $process_number"
+
 
