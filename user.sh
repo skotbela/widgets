@@ -18,24 +18,14 @@ run_casual() {
   echo "Currently logged in users: "
   echo "$currently_logged_in_users"
 
-  all_users=$(getent passwd |awk -F':' '{ print $1}')
-  echo "All users: "
-  echo "$all_users"
-
-  all_groups=$(getent group |awk -F':' '{ print $1}')
-  echo "All groups: "
-  echo "$all_groups"
-
   echo ""
 }
 
 run_visual() {
   zenity \
   --info \
-  --text="<span size=\"xx-large\">$(who | awk '{ print $1 }')</span>
-  <span size=\"xx-large\">$(getent passwd |awk -F':' '{ print $1}')</span>
-  <span size=\"xx-large\">$(getent group |awk -F':' '{ print $1}')</span>" \
-  --title="User-Widget" \
+  --text="<span size=\"xx-large\">$(who | awk '{ print $1 }')</span>" \
+  --title="Logged in as: " \
   --ok-label="OK"
 }
 
