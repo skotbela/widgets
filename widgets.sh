@@ -19,6 +19,7 @@ widget_control() {
 }
 
 select_widget() {
+  clear
   visual=$1
   i=1
   while [ "$i" -lt 6 ]; do
@@ -43,7 +44,6 @@ run_visual() {
 }
 
 run_casual() {
-  echo "$1"
   "./$1.sh"
 }
 
