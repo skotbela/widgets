@@ -1,5 +1,5 @@
 #!/bin/bash
 
-grep -E 'model name|cpu cores|cpu MHz' /proc/cpuinfo |head -3
-
+echo "Number of running processes: "
+ps axu | wc -l
 
