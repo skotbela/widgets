@@ -1,15 +1,25 @@
 #!/bin/bash
 
 main() {
-  if [ -z ${WIDGET_CONTROL+x} ]; then
-    ./mem.sh
-    ./cpu.sh
+  if [[ "$1" == "visual" ]]
+  then
+    widget_control "visual"
   else
-    select_widget
+    widget_control
+  fi
+}
+
+widget_control() {
+  if [ -z ${WIDGET_CONTROL+x} ]; then
+    ./mem.sh "$1"
+    ./cpu.sh "$1"
+  else
+    select_widget "$1"
   fi
 }
 
 select_widget() {
+  visual=$1
   i=1
   while [ "$i" -lt 6 ]; do
     file_var=$(echo "${WIDGET_CONTROL}" | cut -d',' -f"$i")
@@ -17,11 +27,24 @@ select_widget() {
       echo ""
       tput cuu1
       tput el
-    else
-      source ./$file_var.sh
+    elif [[ "$visual" == "visual" ]]
+      then
+        run_visual "$file_var" "visual"
+    elif [[ -z "$visual" ]]
+      then
+        run_casual "$file_var"
     fi
     i=$((i + 1))
   done
 }
 
-main
+run_visual() {
+  gnome-terminal -- "./$1.sh" "$2"
+}
+
+run_casual() {
+  echo "$1"
+  "./$1.sh"
+}
+
+main "$@"
