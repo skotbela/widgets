@@ -23,7 +23,7 @@ run_visual() {
   zenity \
     --info \
     --text="<span size=\"xx-large\">$(grep -E 'model name|cpu cores|cpu MHz' /proc/cpuinfo |head -3)</span>" \
-    --title="Process-Widget" \
+    --title="CPU-Widget" \
     --ok-label="OK"
 }
 
