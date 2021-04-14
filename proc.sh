@@ -11,15 +11,20 @@ main() {
 }
 
 run_casual() {
+  echo "---== PROCESS DATA ==---
+  "
+
   process_number=$(ps axu | wc -l)
   echo "Number of running processes: $process_number"
+
+  echo ""
 }
 
 run_visual() {
   zenity \
     --info \
-    --text="<span size=\"xx-large\">$(ps axu | wc -l).</span>" \
-    --title="Memory-Widget" \
+    --text="<span size=\"xx-large\">$(ps axu | wc -l)</span>" \
+    --title="Process-Widget" \
     --ok-label="OK"
 }
 
